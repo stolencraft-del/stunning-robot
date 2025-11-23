@@ -17,8 +17,6 @@ from Extractor.modules.careerwill import career_willl
 # ------------------------------------------------------------------------------- #
 
 
-
-
 buttons = InlineKeyboardMarkup([
                 [
                   InlineKeyboardButton("ᴍ ᴏ ᴅ ᴇ s", callback_data="modes_"),
@@ -225,23 +223,17 @@ back_button  = [[
 
 
 @app.on_message(filters.command("start"))
-async def start(_,message):
-  join = await subscribe(_,message)
-  if join ==1:
-    return
-  await message.reply_photo(photo=random.choice(script.IMG), 
-                            caption=script.START_TXT.format(message.from_user.mention),
-                            reply_markup=buttons)
-
-
-
-
-
-
+async def start(client, message):
+    join = await subscribe(client, message)
+    if join == 1:
+        return
+    await message.reply_photo(photo=random.choice(script.IMG), 
+                              caption=script.START_TXT.format(message.from_user.mention),
+                              reply_markup=buttons)
 
 
 @app.on_callback_query()
-async def handle_callback(_, query):
+async def handle_callback(client, query):
 
     if query.data=="home_":        
         
@@ -274,16 +266,16 @@ async def handle_callback(_, query):
             )
 
     elif query.data=="v2_": 
-        api = await app.ask(query.message.chat.id, text="**SEND APPX API\n\n✅ Example:\ntcsexamzoneapi.classx.co.in**")
+        api = await client.ask(query.message.chat.id, text="**SEND APPX API\n\n✅ Example:\ntcsexamzoneapi.classx.co.in**")
         api_txt = api.text
         name = api_txt.split('.')[0].replace("api", "") if api else api_txt.split('.')[0]
-        await appex_v2_txt(app, query.message, api_txt, name)
+        await appex_v2_txt(client, query.message, api_txt, name)
 
     elif query.data=="v3_": 
-        api = await app.ask(query.message.chat.id, text="**SEND APPX API\n\n✅ Example:\ntcsexamzoneapi.classx.co.in**")
+        api = await client.ask(query.message.chat.id, text="**SEND APPX API\n\n✅ Example:\ntcsexamzoneapi.classx.co.in**")
         api_txt = api.text
         name = api_txt.split('.')[0].replace("api", "") if api else api_txt.split('.')[0]
-        await appex_v3_txt(app, query.message, api_txt, name)
+        await appex_v3_txt(client, query.message, api_txt, name)
       
     elif query.data=="next_1":        
         reply_markup = InlineKeyboardMarkup(button2)
@@ -320,130 +312,130 @@ async def handle_callback(_, query):
 
 
     elif query.data=="careerwilll_":
-        await career_willl(app, query.message)
+        await career_willl(client, query.message)
   
     elif query.data=="khan_":
-        await khan_login(app, query.message)
+        await khan_login(client, query.message)
 
     elif query.data=="ss_maker":     
         api = "sscmakerexampreparationapi.classx.co.in"
         name = "SSC Makers"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="perfect_acc":     
         api = "perfectionacademyapi.appx.co.in"
         name = "Perfection Academy"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="e1_coaching":     
         api = "e1coachingcenterapi.classx.co.in"
         name = "e1 coaching"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="samyak_ras":     
         api = "samyakapi.classx.co.in"
         name = "Samyak"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="vj_education":     
         api = "vjeducationapi.appx.co.in"
         name = "VJ Education"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="gyan_bindu":     
         api = "gyanbinduapi.appx.co.in"
         name = "Gyan Bindu"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="dhananjay_ias":     
         api = "dhananjayiasacademyapi.classx.co.in"
         name = "Dhananjay IAS"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="think_ssc":     
         api = "thinksscapi.classx.co.in"
         name = "Think SSC"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
 
     elif query.data=="Sahil_sir":     
         api = "quicktrickssahilsirapi.classx.co.in"
         name = "Sahil Sir"
-        await appex_v2_txt(app, query.message, api, name)
+        await appex_v2_txt(client, query.message, api, name)
        
     elif query.data=="Ashish_lec":     
         api = "ashishsinghlecturesapi.classx.co.in"
         name = "Ashish Singh"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="tutors_adda":     
         api = "tutorsaddaapi.classx.co.in"
         name = "Tutors Adda"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="nimisha_bansal":     
         api = "nimishabansalapi.appx.co.in"
         name = "Nimisha Bansal"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="sachin_acc":     
         api = "sachinacademyapi.classx.co.in"
         name = "Sachin Academy"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="acharya_classes":     
         api = "acharyaclassesapi.classx.co.in"
         name = "Acharya Classes"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="target_plus":     
         api = "targetpluscoachingapi.classx.co.in"
         name = "Target Plus Coaching"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="rwa_":   
         api = "rozgarapinew.teachx.in"
         name = "Rojgar with Ankit"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="winners_":     
         api = "winnersinstituteapi.classx.co.in"
         name = "Winners"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="ocean_gurukul":     
         api = "oceangurukulsapi.classx.co.in"
         name = "Ocean Gurukul"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="mg_concept":     
         api = "mgconceptapi.classx.co.in"
         name = "MG Concept"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="yodha_":     
         api = "yodhaappapi.classx.co.in"
         name = "Yodha"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="note_book":     
         api = "notebookapi.classx.co.in"
         name = "Note Book"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="uc_live":     
         api = "ucliveapi.classx.co.in"
         name = "UC LIVE"
-        await appex_v2_txt(app, query.message, api, name)
+        await appex_v2_txt(client, query.message, api, name)
       
     elif query.data=="space_ias":     
         api = "spaceiasapi.classx.co.in"
         name = "Space IAS"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="rg_vikramjeet":     
         api = "rgvikramjeetapi.akamai.net.in/"
         name = "RG Vikramjeet"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
         
         
 
@@ -451,134 +443,134 @@ async def handle_callback(_, query):
     elif query.data=="vidya_bihar":     
         api = "vidyabiharapi.teachx.in"
         name = "Vidya Vihar"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="aman_sir":     
         api = "amansirenglishapi.classx.co.in"
         name = "Aman Sir English"
-        await appex_v2_txt(app, query.message, api, name)
+        await appex_v2_txt(client, query.message, api, name)
       
     elif query.data=="nirman_ias":     
         api = "nirmaniasapi.classx.co.in"
         name = "Nirman IAS"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="permar_ssc":     
         api = "parmaracademyapi.classx.co.in"
         name = "Parmar Academy"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="neo_spark":     
         api = "neosparkapi.classx.co.in"
         name = "Neo Spark"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="md_classes":     
         api = "mdclassesapi.classx.co.in"
         name = "MD Classes"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="ng_learners":     
         api = "nglearnersapi.classx.co.in"
         name = "NG Learners"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="ssc_gurukul":     
         api = "ssggurukulapi.appx.co.in"
         name = "SSC Gurukul"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="army_study":     
         api = "armystudyliveclassesapi.classx.co.in"
         name = "Army Study Live"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="sankalp_":     
         api = "sankalpclassesapi.classx.co.in"
         name = "Sankalp"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="target_upsc":     
         api = "targetupscapi.classx.co.in"
         name = "Target UPSC"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
       
     elif query.data=="gk_cafe":     
         api = "gkcafeapi.classx.co.in"
         name = "GK Cafe"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
 
     elif query.data == 'officers_acc':
         api = "theofficersacademyapi.classx.co.in"
         name = "Officers Academy"
-        await appex_v3_txt(app, query.message, api, name)
+        await appex_v3_txt(client, query.message, api, name)
 
     elif query.data == 'rk_sir':
         api = "rksirofficialapi.classx.co.in"
         name = "Rk Sir Official"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
       
     elif query.data == 'study_mantra':
         api = "studymantraapi.classx.co.in"
         name = "Study Mantra"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'science_fun':
         api = "sciencefunapi.classx.co.in"
         name = "Science Fun"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'grow_acc':
         api = "growacademyapi.classx.co.in"
         name = "Grow Academy"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'goal_yaan':
         api = "goalyaanapi.appx.co.in"
         name = "Goal Yaan"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'anilsir_iti':
         api = "anilsiritiapi.classx.co.in"
         name = "Anil Sir Iti"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'education_adda':
         api = "educationaddaplusapi.classx.co.in"
         name = "Education Adda Plus"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'achievers_acc':
         api = "achieversacademyapi.classx.co.in"
         name = "Achievers Academy"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'commando_acc':
         api = "commandoacademyapi.appx.co.in"
         name = "Commando Academy"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
 
     elif query.data == 'exampur_':
-        await appex_v3_txt(app, query.message)
+        await exampur_txt(client, query.message)
 
     elif query.data == 'neet_kakajee':
         api = "neetkakajeeapi.classx.co.in"
         name = "Neet Kaka JEE"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data == 'app_exampur':
         api = "exampurapi.classx.co.in"
         name = "App Exampur"
-        await appex_v3_txt(app, query.message, api, name) 
+        await appex_v3_txt(client, query.message, api, name) 
       
   
     elif query.data=="classplus_":          
-        await classplus_txt(app, query.message)
+        await classplus_txt(client, query.message)
   
     elif query.data == 'pw_':
         await query.message.reply_text(
-            "**CHHOSE FROM BELOW **",
+            "**CHOOSE FROM BELOW**",
             reply_markup=InlineKeyboardMarkup([
                 [
                     InlineKeyboardButton("Mobile No.", callback_data='mobile_'),
@@ -586,32 +578,15 @@ async def handle_callback(_, query):
                 ]]))
 
     elif query.data == 'mobile_':
-        await pw_mobile(app, query.message)
+        await pw_mobile(client, query.message)
 
     elif query.data == 'token_':
-        await pw_token(app, query.message)
+        await pw_token(client, query.message)
         
     elif query.data == 'yes_officer':
         api = "yesofficerapi.classx.co.in"
         name = "yes officer"
-        await appex_v3_txt(app, query.message, api, name) 
-
-
-
-
-
-
-  
-
-                
-  
-    
-      
-   
-
-  
-
-  
+        await appex_v3_txt(client, query.message, api, name) 
 
     elif query.data=="close_data":
         await query.message.delete()
