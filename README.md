@@ -67,6 +67,7 @@ CHANNEL_ID=-100xxxxxxxxxx  # Telegram channel ID with -100 prefix
 4. Add env variables: API_ID, API_HASH, BOT_TOKEN, etc.
 5. Deploy your app and scale worker to 1
 ```
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/stolencraft-del/stunning-robot)
 
 ---
 
