@@ -310,5 +310,18 @@ async def extract_handler(client, message):
     await classplus_txt(message, session)
 
 
-app.start()
-idle()
+
+async def start_bot():
+    """Start the Pyrogram client"""
+    try:
+        await app.start()
+        print("✅ ClassPlus Bot Started Successfully!")
+        await idle()
+    except Exception as e:
+        print(f"❌ Error starting bot: {e}")
+    finally:
+        await app.stop()
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(start_bot())
